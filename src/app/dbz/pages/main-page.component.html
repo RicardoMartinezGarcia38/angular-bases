@@ -1,0 +1,12 @@
+<h1>DBZ Personajes</h1>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <!-- GRACIAS AL @INPUT QUE ESPECIFICAMOS EN EL LIST.COMPONENT.TS AQUI PODEMOS UTILIZAR DIRECTAMENTE LOS DATOS DE LA LISTA QUE ESTA EN EL MAIN.COMPONENT.TS, USANDO [CHARACTERLIST]="CHARACTERS" -->
+    <dbz-list [characterList]="characters"></dbz-list>
+    </div>
+    <div class="col">
+    <dbz-form (onNewCharacter)="onNewCharacter($event)"></dbz-form>
+  </div>
+</div>
