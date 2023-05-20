@@ -1,3 +1,4 @@
+import { DbzService } from './../services/dbz.service';
 import { Component } from '@angular/core';
 import { Character } from '../interfaces/character.interface';
 
@@ -8,23 +9,15 @@ import { Character } from '../interfaces/character.interface';
 
 export class MainPageComponent {
 
+  constructor( private dbzService:DbzService ){}
 
-  //*! ESTO ES UN ARREGLO DE PERSONAJES, RECUERDA QUE TIENES QUE DEFINIR EL TIPO DE DATO ( EN ESTE CASO DEFINIMOS UNA INTERFAZ EN LA CARPETA DE INTERFACES ) DE HAY CREAMOS LA INTERFAZ CHARACTER Y ESE ES EL TIPO DE DATO QUE DEFINIMOS AQUI.
-  public characters: Character[] = [{
-    name: 'Krillin',
-    power: 1000,
-  },{
-    name: 'Goku',
-    power: 9500,
-  },{
-    name: 'Vegeta',
-    power: 12000,
-  }];
-
-  onNewCharacter( character: Character ): void {
-    this.characters.unshift( character );
-
+  get characters(): Character[]{
+    return [...this.dbzService.characters];
   }
-
+  onDeleteCharacter( id: string ): void {
+    this.dbzService.deleteCharacterById( id )
+  }
+  onNewCharacter( character: Character ): void {
+    this.dbzService.onNewCharacter( character );
+  }
 }
-//TODO: NO ENCUENTRO EL MALDITO ERROR, RECORDAR MIRARLO ANTES DE CONTINUAR

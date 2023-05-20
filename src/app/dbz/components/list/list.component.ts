@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { v4 as uuid } from 'uuid';
+
 import { Character } from '../../interfaces/character.interface';
 
 @Component({
@@ -12,13 +14,17 @@ export class ListComponent {
   //*! AL PONER @INPUT() LE ESTAMOS DICIENDO A ESTA PROPIEDAD QUE LOS DATOS DE CHARACTER PODRAN SER USADOS DIRECTAMENTE.
   @Input()
   public characterList: Character[] = [{
+    id: uuid(),
     name: 'Trunks',
-    power: 10
+    power: 0
   }]
 
-  onDeleteCharacter(index: number ): void {
+  @Output()
+  public onDelete: EventEmitter<string> = new EventEmitter();
+
+  onDeleteCharacter( id: string ): void {
     //TODO: Emitir el ID del personaje
-    console.log({index})
+    this.onDelete.emit( id );
   }
 
 }
